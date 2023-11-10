@@ -7,6 +7,6 @@ public partial class InmuebleDetailPage : ContentPage
 	public InmuebleDetailPage(InmuebleDetailViewModel viewModel)
 	{
 		InitializeComponent();
-        BindingContext = viewModel;
-    }
+		BindingContext = viewModel;
+	}
 }

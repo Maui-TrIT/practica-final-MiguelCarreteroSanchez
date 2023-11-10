@@ -4,15 +4,14 @@ namespace ShopApp.Models.Backend.Inmueble;
 
 public class CategoryResponse
 {
-
-    [JsonProperty("id")]   //no es necesario porque es igual el nombre de la propiedad a lo que me devuelve el backend
+    [JsonProperty("id")]
     public int Id { get; set; }
-
 
     [JsonProperty("nombre")]
     public string NombreCategory { get; set; }
 
-
-    [JsonProperty("imageUrl")] //no es necesario porque es igual el nombre de la propiaedad a lo que me devuelve el backend
+    [JsonProperty("imageUrl")]
     public string ImagenUrl { get; set; }
+
 }
+

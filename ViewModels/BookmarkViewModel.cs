@@ -13,16 +13,18 @@ public partial class BookmarkViewModel : ViewModelGlobal
     ObservableCollection<InmuebleResponse> inmuebles;
 
     [ObservableProperty]
-    InmuebleResponse inmuebleSeleccionado;
+    private InmuebleResponse inmuebleSeleccionado;
 
-    private readonly INavigationService _navegacionService;
+    private readonly INavegacionService _navegacionService;
 
     private readonly InmuebleService _inmuebleService;
 
+    public Command GetInmueblesCommand { get; }
 
-    public Command GetInmueblesCommand { get; set; }
-
-    public BookmarkViewModel(INavigationService navegacionService, InmuebleService inmuebleService)
+    public BookmarkViewModel(
+        INavegacionService navegacionService, 
+        InmuebleService inmuebleService
+        )
     {
         _navegacionService = navegacionService;
         _inmuebleService = inmuebleService;
@@ -35,7 +37,7 @@ public partial class BookmarkViewModel : ViewModelGlobal
         if (e.PropertyName == nameof(InmuebleSeleccionado))
         {
             var uri = $"{nameof(InmuebleDetailPage)}?id={InmuebleSeleccionado.Id}";
-            await _navegacionService.GoToAsync(uri);        
+            await _navegacionService.GoToAsync(uri);
         }
     }
 
@@ -44,22 +46,23 @@ public partial class BookmarkViewModel : ViewModelGlobal
         if (IsBusy)
             return;
 
+
         try
         {
             IsBusy = true;
             var listInmuebles = await _inmuebleService.GetBookmarks();
             Inmuebles = new ObservableCollection<InmuebleResponse>(listInmuebles);
-
         }
         catch (Exception e)
-        { 
+        {
             await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Aceptar");
         }
-
-        finally 
-        {
+        finally
+        { 
             IsBusy = false;
         }
+    
     }
 
 }
+

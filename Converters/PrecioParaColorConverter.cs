@@ -11,11 +11,15 @@ namespace ShopApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+
             var precio = (decimal)value;
             if (precio >= 0 && precio <= 100)
+            {
                 return Colors.Green;
-            else
-                return Colors.Red;
+            }
+
+
+            return Colors.Red;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

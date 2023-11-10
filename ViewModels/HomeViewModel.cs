@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.VisualBasic;
 using ShopApp.Models.Backend.Inmueble;
 using ShopApp.Services;
 using ShopApp.Views;
@@ -7,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace ShopApp.ViewModels;
 
-public partial class HomeViewModel:ViewModelGlobal
+public partial class HomeViewModel : ViewModelGlobal
 {
     [ObservableProperty]
     string nombreUsuario;
@@ -24,32 +25,31 @@ public partial class HomeViewModel:ViewModelGlobal
     public Command GetDataCommand { get; }
 
     private readonly InmuebleService _inmuebleService;
-    private readonly INavigationService _navigationService;
 
-    public HomeViewModel(InmuebleService inmuebleService, INavigationService navigationService)
+    private readonly INavegacionService _navegacionService;
+
+    public HomeViewModel(InmuebleService inmuebleService, INavegacionService navegacionService)
     {
         _inmuebleService = inmuebleService;
-        _navigationService = navigationService;
         NombreUsuario = Preferences.Get("nombre", string.Empty);
-        GetDataCommand = new Command(async()=>await LoadDataAsync());
-
-        GetDataCommand.Execute(this); //para ejecutar el comando 
+        GetDataCommand = new Command(async () => await LoadDataAsync());
+        GetDataCommand.Execute(this);
+        _navegacionService = navegacionService;
     }
-
 
     public async Task LoadDataAsync()
     {
-        if (IsBusy) //se está trabajando en otra petición
+        if (IsBusy)
             return;
+
         try
         {
             IsBusy = true;
             var listCategories = await _inmuebleService.GetCategories();
+            var listInmuebles =  await _inmuebleService.GetInmueblesFavoritos();
+
+            FavoriteInmuebles = new ObservableCollection<InmuebleResponse>(listInmuebles);
             Categories = new ObservableCollection<CategoryResponse>(listCategories);
-
-            var listFavoritos = await _inmuebleService.GetInmueblesFavoritos();
-            FavoriteInmuebles = new ObservableCollection<InmuebleResponse>(listFavoritos);
-
         }
         catch (Exception e)
         {
@@ -60,19 +60,24 @@ public partial class HomeViewModel:ViewModelGlobal
             IsBusy = false;
         }
 
+
     }
+
 
     [RelayCommand]
     async Task CategoryEventSelected()
-    { 
+    {
         var uri = $"{nameof(InmuebleListPage)}?id={CategoriaSeleccionada.Id}";
-        await _navigationService.GoToAsync(uri);
+        await _navegacionService.GoToAsync(uri);
     }
 
+
     [RelayCommand]
-    async Task TabBusquedaInmuebles()
+    async Task TapBusquedaInmuebles()
     {
         var uri = $"{nameof(InmuebleBusquedaPage)}";
-        await _navigationService.GoToAsync(uri);
+        await _navegacionService.GoToAsync(uri);
     }
+
 }
+

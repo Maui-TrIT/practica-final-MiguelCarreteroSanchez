@@ -6,7 +6,7 @@ public partial class ResumenPage : ContentPage
 {
 	public ResumenPage(ResumenViewModel viewModel)
 	{
-        InitializeComponent();
+		InitializeComponent();
 		BindingContext = viewModel;
 	}
 }

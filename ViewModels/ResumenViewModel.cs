@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShopApp.ViewModels;
 
-public partial class ResumenViewModel:ViewModelGlobal
+public partial class ResumenViewModel : ViewModelGlobal
 {
     [ObservableProperty]
     int visitas;
@@ -26,13 +26,17 @@ public partial class ResumenViewModel:ViewModelGlobal
     {
         var db = new ShopDbContext();
 
-        Visitas = shopOutDbContext.Compras.ToList().DistinctBy(s => s.ClientId).ToList().Count();
+        Visitas = shopOutDbContext.Compras
+            .ToList()
+            .DistinctBy(s => s.ClientId)
+            .ToList()
+            .Count();
 
         Clients = db.Clients.Count();
 
         Total = shopOutDbContext.Compras.ToList().Sum(s => s.Cantidad * s.Precio);
-
         TotalProducts = shopOutDbContext.Compras.Sum(s => s.Cantidad);
-        
     }
+
 }
+

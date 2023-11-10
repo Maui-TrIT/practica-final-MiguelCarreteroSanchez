@@ -1,7 +1,6 @@
-
 using ShopApp.DataAccess;
-namespace ShopApp.Views;
 
+namespace ShopApp.Views;
 
 public partial class CategoriesPage : ContentPage
 {
@@ -9,12 +8,12 @@ public partial class CategoriesPage : ContentPage
 	{
 		InitializeComponent();
 
-        var dbContext = new ShopDbContext();
+		var dbContext = new ShopDbContext();
 
-        foreach (var category in dbContext.Categories)
-        {
-            container.Children.Add(new Label { Text = category.Nombre });
-        }
+		foreach (var category in dbContext.Categories)
+		{
+			container.Children.Add(new Label { Text = category.Nombre });
+		}
 
-    }
+	}
 }

@@ -8,10 +8,11 @@ using System.ComponentModel;
 
 namespace ShopApp.ViewModels;
 
+
 public partial class HelpSupportViewModel : ViewModelGlobal
 {
     [ObservableProperty]
-    public int visitasPendientes;
+    private int visitasPendientes;
 
     [ObservableProperty]
     private ObservableCollection<Client> clients;
@@ -20,13 +21,13 @@ public partial class HelpSupportViewModel : ViewModelGlobal
     private Client clienteSeleccionado;
 
 
-    private readonly INavigationService _navigationService;
-    public HelpSupportViewModel(INavigationService navigationService)
+    private readonly INavegacionService _navegacionService;
+    public HelpSupportViewModel(INavegacionService navegacionService)
     {
-        _navigationService = navigationService;
         var database = new ShopDbContext();
         Clients = new ObservableCollection<Client>(database.Clients);
         PropertyChanged += HelpSupportData_PropertyChanged;
+        _navegacionService = navegacionService;
     }
 
     private async void HelpSupportData_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -34,59 +35,12 @@ public partial class HelpSupportViewModel : ViewModelGlobal
         if (e.PropertyName == nameof(ClienteSeleccionado))
         {
             var uri = $"{nameof(HelpSupportDetailPage)}?id={ClienteSeleccionado.Id}";
-            await _navigationService.GoToAsync(uri);
+            await _navegacionService.GoToAsync(uri);
         }
     }
 
+    
 
-
-    //public int _visitasPendientes;
-    //public int VisitasPendientes
-    //{
-    //    get { return _visitasPendientes; }
-    //    set
-    //    {
-    //        if (_visitasPendientes != value)
-    //        {
-    //            _visitasPendientes = value;
-    //            OnPropertyChanged();
-    //            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("VisitasPendientes"));
-    //        }
-    //    }
-    //}
-
-
-    //private ObservableCollection<Client> _clients;
-    //public ObservableCollection<Client> Clients
-    //{
-    //    get { return _clients; }
-    //    set
-    //    {
-    //        if (_clients != value)
-    //        {
-    //            _clients = value;
-    //            OnPropertyChanged();
-    //        }
-    //    }
-    //}
-
-
-
-    //private Client _clienteSeleccionado;
-
-    //public Client ClienteSeleccionado
-    //{
-
-    //    get { return _clienteSeleccionado; }
-    //    set
-    //    {
-    //        if (_clienteSeleccionado != value)
-    //        {
-    //            _clienteSeleccionado = value;
-    //            OnPropertyChanged();
-    //        }
-    //    }
-
-
-    //}
 }
+
+

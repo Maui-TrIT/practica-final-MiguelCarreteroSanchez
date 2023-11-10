@@ -5,8 +5,7 @@
              xmlns:vm="clr-namespace:ShopApp.ViewModels"
              x:DataType="vm:InmuebleListViewModel"
              x:Class="ShopApp.Views.InmuebleListPage"
-             Title="Lista de viviendas">
-
+             Title="Lista de Viviendas">
 
     <CollectionView
         Margin="10"
@@ -15,50 +14,55 @@
         SelectedItem="{Binding InmuebleSeleccionado, Mode=TwoWay}"
         >
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="20" Orientation="Vertical"/>
+            <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="model:InmuebleResponse">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="6*" />
                     </Grid.ColumnDefinitions>
-                    <Frame
+                    <Frame 
                         Grid.Column="0"
-                        CornerRadius="10"
+                        CornerRadius="10"   
                         Padding="0"
-                        IsClippedToBounds="True">
-                        <Image
+                        IsClippedToBounds="True"
+                           >
+                        <Image 
                             HeightRequest="160"
                             Aspect="Fill"
-                            Source="{Binding ImagenUrl}"/>
+                            Source="{Binding ImagenUrl}"
+                            />
                     </Frame>
                     <StackLayout 
-                        Grid.Column="1"
+                        Grid.Column="1" 
                         Padding="15"
-                        Spacing="10">
-
-                        <Label
+                        Spacing="10"
+                                 >
+                        <Label 
                             FontSize="Medium"
-                            Text="{Binding Precio, StringFormat='{0:C}'}"/>
-                        <Label
+                            Text="{Binding Precio, StringFormat='{0:C}'}"
+                            />
+                        <Label 
                             FontSize="Small"
-                            Text="{Binding Nombre}"/>
-                        <Label
+                            Text="{Binding Nombre}"
+                            />
+                        <Label 
                             FontSize="Small"
-                            Text="{Binding Direccion}"/>
-
+                            Text="{Binding Direccion}"
+                            />
                     </StackLayout>
-                                 
-
                 </Grid>
-                
+                   
             </DataTemplate>
+            
         </CollectionView.ItemTemplate>
         
         
     </CollectionView>
     
+    
+ 
 </ContentPage>

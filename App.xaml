@@ -7,37 +7,32 @@
              x:Class="ShopApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            
-            <converters:PrecioParaColorConverter x:Key="PrecioParaColorConverter"/>
-            
+            <converters:PrecioParaColorConverter x:Key="PrecioParaColorConverter" />
             <DataTemplate x:Key="ProductDataTemplate" x:DataType="data:Product">
-                <Grid ColumnDefinitions="*,Auto" Padding="4" HeightRequest="80">
+                <Grid ColumnDefinitions="*, Auto" Padding="4" HeightRequest="80">
                     <VerticalStackLayout VerticalOptions="Center">
                         <Label Text="{Binding Nombre}" FontAttributes="Bold" />
-                        <Label Text="{Binding Descripcion}" />
-                        
+                        <Label Text="{Binding Descripcion }" />
                     </VerticalStackLayout>
-                
-                    <Label Grid.Column="1"
-                           VerticalOptions="Center"
-                           FontAttributes="Bold"
-                           FontAutoScalingEnabled="True"
-                           Text="{Binding Precio, StringFormat='{0:C}'}" 
-                           TextColor="{Binding Precio, Converter={StaticResource PrecioParaColorConverter}}"/>
 
-
+                    <Label 
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        FontAutoScalingEnabled="True"
+                        Text="{Binding Precio, StringFormat='{0:C}'}"
+                        TextColor="{Binding Precio, Converter={StaticResource PrecioParaColorConverter}}"
+                        />
                 </Grid>
             </DataTemplate>
-
-            <Style x:Name="Miguel" TargetType="Grid">
-                <Setter Property="Background">
+            <Style x:Key="MiGridVaxi" TargetType="Grid">
+                <Setter Property="Background" >
                     <Setter.Value>
-                        <SolidColorBrush Color="{AppThemeBinding Light='LightSteelBlue', Dark='DarkBlue'}"/>
+                        <SolidColorBrush Color="{AppThemeBinding Light='LightSteelBlue', Dark='DarkBlue'}" />
                     </Setter.Value>
-                    
                 </Setter>
+                <Setter Property="Padding" Value="20" />
             </Style>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

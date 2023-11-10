@@ -5,57 +5,60 @@
              xmlns:model="clr-namespace:ShopApp.Models.Backend.Inmueble"
              xmlns:vm="clr-namespace:ShopApp.ViewModels"
              x:DataType="vm:InmuebleBusquedaViewModel"
-             Title="busqueda de inmuebles"
+             Title="Busqueda de Inmuebles"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="false" 
+             >
 
     <VerticalStackLayout>
-
-        <Grid BackgroundColor="#1d94ab">
+        <Grid
+            BackgroundColor="#1d94ab"
+            >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ImageButton
+            <ImageButton 
                 Grid.Column="0"
                 Source="left_arrow_icon"
                 HeightRequest="30"
                 WidthRequest="30"
                 HorizontalOptions="Center"
-                Command="{Binding GetBackEventCommand}">                
-            </ImageButton>
+                Command="{Binding GetBackEventCommand}"
+                />
 
-            <SearchBar
-                Grid.Column="1"
-                Margin="5"
-                TextColor="Black"
-                BackgroundColor="White"
-                Placeholder="Buscar inmueble"
-                Text="{Binding SearchText, Mode=TwoWay}">
-
+            <SearchBar Grid.Column="1"
+                       Margin="5"
+                       TextColor="Black"
+                       BackgroundColor="White"
+                       Placeholder="Buscar inmueble"
+                       Text="{Binding SearchText,Mode=TwoWay}"
+                       >
                 <SearchBar.Behaviors>
-                    <toolkit:UserStoppedTypingBehavior
-                        Command="{Binding EjecutarBusqueda}"
-                        StoppedTypingTimeThreshold="1000"
-                        MinimumLengthThreshold="3"
-                        ShouldDismissKeyboardAutomatically="True">  
-                        
-                    </toolkit:UserStoppedTypingBehavior>
+
+                    <toolkit:UserStoppedTypingBehavior 
+                            Command="{Binding EjecutarBusqueda}"
+                            StoppedTypingTimeThreshold="1000"
+                            MinimumLengthThreshold="3"
+                            ShouldDismissKeyboardAutomatically="True"
+                        />
+
+
                 </SearchBar.Behaviors>
                 
             </SearchBar>
-            
         </Grid>
 
         <CollectionView
             Margin="0,10,0,10"
             SelectionMode="Single"
             ItemsSource="{Binding Inmuebles}"
-            SelectedItem="{Binding InmuebleSeleccionado, Mode=TwoWay}">
+            SelectedItem="{Binding InmuebleSeleccionado, Mode=TwoWay}"
+            >
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
@@ -63,12 +66,15 @@
                     <Label 
                         Padding="10"
                         FontSize="Medium"
-                        Text="{Binding Direccion}"/>
+                        Text="{Binding Direccion}"
+                        />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
         </CollectionView>
     </VerticalStackLayout>
+    
+    
+    
     
     
 </ContentPage>

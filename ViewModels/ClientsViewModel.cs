@@ -7,19 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopApp.ViewModels;
-
-public partial class ClientsViewModel : ViewModelGlobal
+namespace ShopApp.ViewModels
 {
-    [ObservableProperty]
-    ObservableCollection<Client> clients;
-
-    [ObservableProperty]
-    Client clienteSeleccionado;
-
-    public ClientsViewModel()
+    public partial class ClientsViewModel : ViewModelGlobal
     {
-        var database = new ShopDbContext();
-        Clients = new ObservableCollection<Client>(database.Clients);
+
+        [ObservableProperty]
+        ObservableCollection<Client> clients;
+
+        [ObservableProperty]
+        Client clientSeleccionado;
+
+        public ClientsViewModel()
+        {
+            var database = new ShopDbContext();
+            Clients = new ObservableCollection<Client>(database.Clients);
+        }
     }
 }

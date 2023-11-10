@@ -3,13 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShopApp.Views.CategoriesPage"
              Title="CategoriesPage">
-    <!--<VerticalStackLayout>
-        <Label 
-            Text="Welcome to categories page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>-->
 
-    <VerticalStackLayout x:Name="container"/>
-    
+    <VerticalStackLayout x:Name="container" />
+
+
 </ContentPage>

@@ -8,5 +8,5 @@ public partial class InmuebleListPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-    }
+	}
 }

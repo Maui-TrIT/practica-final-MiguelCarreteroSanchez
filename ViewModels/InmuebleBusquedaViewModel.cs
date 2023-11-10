@@ -1,5 +1,4 @@
-﻿
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShopApp.Models.Backend.Inmueble;
 using ShopApp.Services;
@@ -7,52 +6,56 @@ using ShopApp.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace ShopApp.ViewModels
+namespace ShopApp.ViewModels;
+
+public partial class InmuebleBusquedaViewModel : ViewModelGlobal
 {
-    public partial class InmuebleBusquedaViewModel:ViewModelGlobal
+    [ObservableProperty]
+    ObservableCollection<InmuebleResponse> inmuebles;
+
+    [ObservableProperty]
+    private InmuebleResponse inmuebleSeleccionado;
+
+    [ObservableProperty]
+    private string searchText;
+
+    private readonly InmuebleService _inmuebleService;
+
+    private readonly INavegacionService _navegacionService;
+
+
+    [RelayCommand]
+    async Task GetBackEvent()
     {
-        [ObservableProperty]
-        ObservableCollection<InmuebleResponse> inmuebles;
-
-        [ObservableProperty]
-        private InmuebleResponse inmuebleSeleccionado;
-
-        [ObservableProperty]
-        private string searchText;
-
-        private readonly InmuebleService _inmuebleService;
-
-        private readonly INavigationService _navigationService;
+        await _navegacionService.GoToAsync("..");
+    }
 
 
-        [RelayCommand]
-        async Task GetBackEvent()
+    public ICommand EjecutarBusqueda => new Command(async () =>
+    {
+
+        var inmuebleList = await _inmuebleService.GetBusquedaInmuebles(SearchText);
+        Inmuebles = new ObservableCollection<InmuebleResponse>(inmuebleList);
+
+    });
+
+    public InmuebleBusquedaViewModel(
+        InmuebleService inmuebleService, 
+        INavegacionService navegacionService
+        )
+    {
+        _inmuebleService = inmuebleService;
+        _navegacionService = navegacionService;
+        PropertyChanged += InmuebleBusquedaViewModel_PropertyChanged;
+    }
+
+    private async void InmuebleBusquedaViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(InmuebleSeleccionado))
         {
-            await _navigationService.GoToAsync("..");
-        }
-
-
-        public ICommand EjecutarBusqueda => new Command(async () =>
-        {
-            var inmuebleList = await _inmuebleService.GetBusquedaInmuebles(SearchText);
-            Inmuebles = new ObservableCollection<InmuebleResponse>(inmuebleList);
-        }
-        );
-
-        public InmuebleBusquedaViewModel(InmuebleService inmuebleService, INavigationService navigationService)
-        {
-            _inmuebleService = inmuebleService;
-            _navigationService = navigationService;
-            PropertyChanged += InmuebleBusquedaViewModel_PropertyChanged;
-        }
-
-        private async void InmuebleBusquedaViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(InmuebleSeleccionado))
-            {
-                var uri = $"{nameof(InmuebleDetailPage)}?id={InmuebleSeleccionado.Id}";
-                await _navigationService.GoToAsync(uri);
-            }
+            var uri = $"{nameof(InmuebleDetailPage)}?id={InmuebleSeleccionado.Id}";
+            await _navegacionService.GoToAsync(uri);
         }
     }
 }
+

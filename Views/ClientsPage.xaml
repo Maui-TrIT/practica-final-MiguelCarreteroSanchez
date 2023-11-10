@@ -3,36 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShopApp.Views.ClientsPage"
              Title="ClientsPage">
-    <!--<VerticalStackLayout>
-        <Label 
-            Text="Welcome to clients page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>-->
+
+
 
     <CarouselView
-        ItemsSource="{Binding Clients}"
-        CurrentItem="{Binding ClientSeleccionado, Mode=TwoWay}">
+            ItemsSource="{Binding Clients}"
+            CurrentItem="{Binding ClientSeleccionado,Mode=TwoWay}"
+        >
         <CarouselView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout VerticalOptions="Center">
-                    <Image Source="dotnet_bot.svg" WidthRequest="200" />
-                    <Label
+                    <Image Source="dotnet_bot.svg" WidthRequest="200"/>
+                    <Label 
                         Text="{Binding Nombre}"
                         HorizontalOptions="Center"
                         FontSize="Subtitle"
                         Margin="10"
                         />
-                    <Label
+                    <Label 
                         Text="{Binding Direccion}"
                         HorizontalOptions="Center"
-                        />           
+                        />
 
-                </VerticalStackLayout>
+                </VerticalStackLayout>                
             </DataTemplate>
         </CarouselView.ItemTemplate>
-        
-        
     </CarouselView>
-    
+
+
+
+
+
 </ContentPage>

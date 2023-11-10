@@ -6,11 +6,10 @@ namespace ShopApp.Views;
 
 public partial class ProductDetailPage : ContentPage
 {
-	public ProductDetailPage(ProductDetailViewModel viewModel)
+	public ProductDetailPage(ProductDetailsViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
 	}
-
 
 }

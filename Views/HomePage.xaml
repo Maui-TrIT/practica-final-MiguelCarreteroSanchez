@@ -8,92 +8,101 @@
              Title="Venta Inmuebles">
 
     <ScrollView>
-
         <Grid Margin="20" RowSpacing="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <VerticalStackLayout Grid.Row="0" Spacing="5">
-                <Label Text="{Binding NombreUsuario}" FontSize="Large"/>
-                <Label Text="Encuentra un lugar para vivir" FontSize="Medium"/>
+                <Label  Text="{Binding NombreUsuario}" FontSize="Large"/>
+                <Label  Text="Encuentra tu mejor lugar para vivir" FontSize="Medium"/>
             </VerticalStackLayout>
 
             <Frame Grid.Row="1" Padding="15">
                 <HorizontalStackLayout Spacing="20">
-                    <Image Source="search_icon" Aspect="AspectFit" HeightRequest="25" WidthRequest="25"/>
-                    <Label Text="Busqueda" VerticalOptions="Center"/>
+                    <Image Source="search_icon" 
+                           Aspect="AspectFit" 
+                           HeightRequest="25"
+                           WidthRequest="25"
+                           />
+                    <Label 
+                        Text="Busqueda"
+                        VerticalOptions="Center"
+                        />
                 </HorizontalStackLayout>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TabBusquedaInmueblesCommand}"/>
+                    <TapGestureRecognizer Command="{Binding TapBusquedaInmueblesCommand}"/>
                 </Frame.GestureRecognizers>
-             </Frame>
+            </Frame>
 
-            <VerticalStackLayout Grid.Row="2">
-                
-                <Label Text="Tipos de viviendas" FontSize="Large"/>
-                
-                <CollectionView 
-                    SelectionMode="Single" 
-                    HeightRequest="50" 
-                    BackgroundColor="White"
-                    ItemsSource ="{Binding Categories}"
+            <VerticalStackLayout Grid.Row="2" Spacing="20">
+                <Label 
+                    Text="Tipos de Viviendas"
+                    FontSize="Large"
+                    />
+
+                <CollectionView
+                    SelectionMode="Single"
+                    HeightRequest="50"
+                    ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding CategoriaSeleccionada}"
                     SelectionChangedCommand="{Binding CategoryEventSelectedCommand}"
+                    BackgroundColor="White"
                     >
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="25" Orientation="Horizontal"/>
+                        <LinearItemsLayout ItemSpacing="25"  Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:CategoryResponse">
                             <Border
                                 Padding="16,8"
-                                HorizontalOptions="Center"                                
+                                HorizontalOptions="Center"
                                 >
                                 <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="10,10,10,10"/>
+                                    <RoundRectangle CornerRadius="10,10,10,10"  />
                                 </Border.StrokeShape>
+
                                 <HorizontalStackLayout Spacing="5" HeightRequest="25">
-                                    <Image
+                                    <Image 
                                         Aspect="AspectFit"
                                         HeightRequest="25"
                                         WidthRequest="25"
                                         Source="{Binding ImagenUrl}"
                                         />
-                                    <Label
+                                    <Label 
                                         VerticalOptions="Center"
-                                        FontSize="Medium" 
+                                        FontSize="Medium"
                                         Text="{Binding NombreCategory}"
                                         />
-
-
-
-
                                 </HorizontalStackLayout>
                                 
+                                
                             </Border>
-                            
                         </DataTemplate>
-                        
                     </CollectionView.ItemTemplate>
-                
+                    
+                    
                 </CollectionView>
                 
+
             </VerticalStackLayout>
 
+
             <VerticalStackLayout Grid.Row="3" Spacing="20">
-                <Label
-                    Text="Mis favoritos"
+                <Label 
+                    Text="Mis Inmuebles Favoritos"
                     FontSize="Large"
                     />
-                <CollectionView
+                <CollectionView 
                     HeightRequest="350"
                     SelectionMode="Single"
-                    ItemsSource="{Binding FavoriteInmuebles}">
+                    ItemsSource="{Binding FavoriteInmuebles}"
+                    >
+                    
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
@@ -107,10 +116,10 @@
                                 >
                                 <Grid RowSpacing="5">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Frame
                                         Grid.Row="0"
@@ -120,45 +129,52 @@
                                         Padding="0"
                                         IsClippedToBounds="True"
                                         >
-                                        <Image Aspect="Fill" Source="{Binding ImagenUrl}"/>
+                                        <Image 
+                                            Aspect="Fill"
+                                            Source="{Binding ImagenUrl}"
+                                            />
                                     </Frame>
-                                    <Label
+                                     <Label 
                                         Grid.Row="1"
                                         Text="{Binding Nombre}"
                                         FontSize="Subtitle"
-                                       />
-                                    <Label
+                                        />
+                                     <Label 
                                         Grid.Row="2"
                                         Text="{Binding Detalle}"
                                         FontSize="Small"
-                                        WidthRequest="250"
-                                        LineBreakMode="TailTruncation"
-                                       />
-                                    <Label
-                                       Grid.Row="3"
-                                       Text="{Binding Precio, StringFormat='{0:C}'}"
-                                       FontSize="Subtitle"
-                                       TextColor="red"
-                                       />        
+                                         WidthRequest="250"
+                                         LineBreakMode="TailTruncation"
+                                        />
+                                    <Label 
+                                        Grid.Row="3"
+                                        Text="{Binding Precio, StringFormat='{0:C}'}"
+                                        FontSize="Subtitle"
+                                        TextColor="#1d94ab"
+                                        />
 
                                 </Grid>
                                 
+                                
                             </Frame>
-                                   
                         </DataTemplate>
+                        
                     </CollectionView.ItemTemplate>
-                    
+                        
+                        
                 </CollectionView>
-
-
+                
+                
             </VerticalStackLayout>
+            
+            
             
         </Grid>
         
         
         
-        
     </ScrollView>
+    
     
     
 </ContentPage>

@@ -4,51 +4,25 @@
              x:Class="ShopApp.Views.HelpSupportPage"
              xmlns:vm="clr-namespace:ShopApp.ViewModels"
              Title="HelpSupportPage">
-    <!--<VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>-->
 
-    <!--<ContentPage.Resources>
-        <views:HelpSupportData x:Key="datadeHelpSupport" VisitasPendientes="10"/>        
-    </ContentPage.Resources>
+  
     
-    <Grid RowDefinitions="100,100,100">
+    
+    <Grid RowDefinitions="Auto,*">
+        
         <Label 
-            Text="{Binding Source={StaticResource datadeHelpSupport},
-            Path=VisitasPendientes,
-            Mode=OneWay}"
-            FontSize="30"/>
-
-        <Button Text="Actualizar" Grid.Row="1"  Clicked="Button_Clicked"/>
-
-        <CollectionView 
-            Grid.Row="2"
-            ItemsSource="{Binding Source={StaticResource datadeHelpSupport},
-                        Path=Clients, Mode=OneWay}"
-            />-->
-
-        <!--<ContentPage.BindingContext>
-            <vm:HelpSupportViewModel  VisitasPendientes="10"/>
-        </ContentPage.BindingContext>-->
-
-        <Grid RowDefinitions="100,100,100">
-            <Label 
             Text="{Binding Clients.Count, Mode=OneWay}"
-            FontSize="30"/>
-
-            <!--<Button Text="Actualizar" Grid.Row="1"  Clicked="Button_Clicked"/>-->
-
-            <CollectionView 
-                Grid.Row="2"
-                SelectionMode="Single"
-                SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
-                ItemsSource="{Binding Clients, Mode=OneWay}"
+            FontSize="30"
             />
 
-        </Grid>
+        <CollectionView 
+            Grid.Row="1"
+            SelectionMode="Single"
+            SelectedItem="{Binding ClienteSeleccionado, Mode=TwoWay}"
+            ItemsSource="{Binding Clients, Mode=OneWay}" />
+
+
+    </Grid>
     
     
 </ContentPage>

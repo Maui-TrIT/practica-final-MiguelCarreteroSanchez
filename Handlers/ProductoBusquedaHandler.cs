@@ -1,21 +1,21 @@
 ﻿using ShopApp.DataAccess;
 using ShopApp.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+
 
 namespace ShopApp.Handlers
 {
     public class ProductoBusquedaHandler : SearchHandler
     {
+
         ShopDbContext dbContext;
 
         public ProductoBusquedaHandler()
         {
             this.dbContext = new ShopDbContext();
+
         }
+
         protected override void OnQueryChanged(string oldValue, string newValue)
         {
             if (string.IsNullOrWhiteSpace(newValue))
@@ -24,15 +24,27 @@ namespace ShopApp.Handlers
                 return;
             }
 
-            var resultados = dbContext.Products.Where(p=>p.Nombre.ToLowerInvariant().
-                            Contains(newValue.ToLowerInvariant())).ToList();
+            var resultados = dbContext.Products
+                .Where(p => p.Nombre.ToLowerInvariant()
+                            .Contains(newValue.ToLowerInvariant())).ToList();
+
+            
 
             ItemsSource = resultados;
+
         }
+
+        
 
         protected async override void OnItemSelected(object item)
         {
-            await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?id={((Product)item).Id}");
+            var product = item as Product;
+            var uri = $"{nameof(ProductDetailPage)}?id={product.Id}";
+            Shell.Current.CurrentItem = Shell.Current.CurrentItem.Items[0];
+            await Shell.Current.GoToAsync(uri, false);
         }
+
+         
+
     }
 }

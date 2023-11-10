@@ -4,18 +4,12 @@
              x:Class="ShopApp.Views.ProductsPage"
              xmlns:handlers="clr-namespace:ShopApp.Handlers"
              Title="ProductsPage">
-    
-    
-    <!--<VerticalStackLayout>
-        <Label 
-            Text="Welcome to product page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>-->
+
+
 
     <Shell.SearchHandler>
         <handlers:ProductoBusquedaHandler 
-            Placeholder="BuscarProductos"
+            Placeholder="Buscar Productos"
             DisplayMemberName="Nombre"
             ShowsResults="True"
             ItemTemplate="{StaticResource ProductDataTemplate}"
@@ -23,21 +17,22 @@
     </Shell.SearchHandler>
 
 
-    <RefreshView 
+    <RefreshView  
         Command="{Binding RefreshCommand}"
-        IsRefreshing="{Binding IsRefreshing}">
+        IsRefreshing="{Binding IsRefreshing}"
+        >
 
-        <CollectionView
-        x:Name="products"
+        <CollectionView 
         SelectionMode="Single"
         ItemsSource="{Binding Products}"
         SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"
         ItemTemplate="{StaticResource ProductDataTemplate}"
-        />
         
+        />
+
     </RefreshView>
-
-
+    
+    
 
 
 

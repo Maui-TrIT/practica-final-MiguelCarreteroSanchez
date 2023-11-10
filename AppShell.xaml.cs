@@ -1,16 +1,15 @@
-﻿namespace ShopApp
-{
-    public partial class AppShell : Shell
-    {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+﻿namespace ShopApp;
 
-        private async void MenuItem_Clicked(object sender, EventArgs e)
-        {
-            var uri = new Uri("http://www.google.com");
-            await Browser.Default.OpenAsync(uri,BrowserLaunchMode.SystemPreferred);
-        }
+public partial class AppShell : Shell
+{
+	public AppShell()
+	{
+		InitializeComponent();
+	}
+
+    private  async void MenuItem_Clicked(object sender, EventArgs e)
+    {
+		var uri = new Uri("https://vaxidrez.com");
+		await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
     }
 }

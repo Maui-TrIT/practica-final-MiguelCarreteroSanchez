@@ -4,6 +4,7 @@ namespace ShopApp.Views;
 
 public partial class BookmarkPage : ContentPage
 {
+	
 	private BookmarkViewModel _viewModel;
 	public BookmarkPage(BookmarkViewModel viewModel)
 	{
@@ -12,7 +13,7 @@ public partial class BookmarkPage : ContentPage
 		_viewModel = viewModel;
 	}
 
-    protected override void OnAppearing()  //este método se ejecuta cuando se carga la página
+    protected override void OnAppearing()
     {
         _viewModel.GetInmueblesCommand.Execute(this);
     }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ShopApp.Services;
 
-public interface IDataBaseRutaService
+public interface IDatabaseRutaService
 {
-    string Get(string nombreArchivo);
+    string Get(string rutaArchivo);
 }
+

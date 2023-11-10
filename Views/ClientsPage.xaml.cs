@@ -1,4 +1,3 @@
-
 using ShopApp.DataAccess;
 using ShopApp.ViewModels;
 
@@ -9,7 +8,6 @@ public partial class ClientsPage : ContentPage
 	public ClientsPage(ClientsViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = viewModel;        
-
+		BindingContext = viewModel;
     }
 }

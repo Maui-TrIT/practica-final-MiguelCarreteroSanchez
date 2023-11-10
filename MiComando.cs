@@ -15,14 +15,14 @@ namespace ShopApp
         {
             _action = action;
             _canExecute = canExecute;
-
         }
-
+        
         public event EventHandler CanExecuteChanged;
-        public void RaiseCanExecute()
+        public void RaiseCanExecuteChanged()
         { 
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
+
         public bool CanExecute(object parameter)
         {
             return _canExecute();
