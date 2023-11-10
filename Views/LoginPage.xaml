@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopApp.Views.LoginPage"
+             Title="Inicie sesion"
+             Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        Margin="20,0,20,0"
+        Spacing="20">
+
+        <Image 
+            Source="dotnet_bot"
+            HorizontalOptions="Center"
+            HeightRequest="80"
+            WidthRequest="80"
+            />
+
+        <Label 
+            Text="Bienvenido a mi app"
+            TextColor="Black"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            />
+        <Label
+            Text="introduzca sus credenciales"
+            TextColor="LightGrey"
+            FontSize="Small"
+            HorizontalOptions="Center"
+            />
+
+        <Entry
+            Text="{Binding Email}"
+            Placeholder="Email"
+            />
+        <Entry
+            Text="{Binding Password}"
+            Placeholder="Password"
+            IsPassword="True"
+            />
+
+        <Button
+            Text="Iniciar sesion"
+            HeightRequest="50"
+            FontSize="Medium"
+            BackgroundColor="#1d94ab"
+            Command="{Binding LoginMethodCommand}"            
+            />
+
+
+    </VerticalStackLayout>
+    
+</ContentPage>
