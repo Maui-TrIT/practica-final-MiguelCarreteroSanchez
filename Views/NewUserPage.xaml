@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShopApp.Views.LoginPage"
-             Title="Inicie Sesion"
-             Shell.NavBarIsVisible="false"
-             >
-
+             x:Class="ShopApp.Views.NewUserPage"
+             Title="New user registration"
+             Shell.NavBarIsVisible="false">
     <VerticalStackLayout 
         VerticalOptions="Center"
         Margin="20,0,20,0"
@@ -20,48 +18,66 @@
             />
 
         <Label 
-            Text="Bienvenido a Vaxi Drez"
+            Text="Crea tu cuenta"
             TextColor="#101010"
             FontSize="Large"
             HorizontalOptions="Center"
             />
 
         <Label 
-            Text="Ingrese sus credenciales para iniciar el uso de la App"
+            Text="Ingresa tu información para crear tu cuenta de acceso a nuestra App"
             TextColor="LightSlateGrey"
             FontSize="Small"
             HorizontalOptions="Center"
             />
-
+        
+        <Entry 
+            Text="{Binding Nombre}"
+            Placeholder="Nombre (*)"
+            />
+        
+        <Entry 
+            Text="{Binding Apellido}"
+            Placeholder="Apellido"
+            />
+        
         <Entry 
             Text="{Binding Email}"
-            Placeholder="Email"
+            Placeholder="Email (*)"
+            />
+        
+        <Entry 
+            Text="{Binding UserName}"
+            Placeholder="UserName (*)"
+            />
+        
+        <Entry 
+            Text="{Binding Telefono}"
+            Placeholder="Telefono"
             />
 
         <Entry 
             Text="{Binding Password}"
-            Placeholder="Password"
+            Placeholder="Password (*)"
             IsPassword="True"
             />
 
         <Button 
-            Text="Iniciar Sesion"
+            Text="Registrar usuario"
             HeightRequest="50"
             FontSize="Medium"
             BackgroundColor="#1d94ab"
-            Command="{Binding LoginMethodCommand}"
+            Command="{Binding RegisterUserCommand}"
             />
 
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-            <Label Text="¿no estás registrado?" Padding="10"/>
-            <Label Text="Regístrate ahora" Padding="10" TextColor="#1d94ab">
+            <Label Text="¿ya tienes una cuenta?" Padding="10"/>
+            <Label Text="Inicia sesión" Padding="10" TextColor="#1d94ab">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TapNewUserCommand}"/>
+                    <TapGestureRecognizer Command="{Binding TapGotoLoginCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
-        </HorizontalStackLayout>     
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
-    
-    
-    
 </ContentPage>

@@ -76,6 +76,11 @@ public static class MauiProgram
         builder.Services.AddTransient<InmuebleBusquedaViewModel>();
         builder.Services.AddTransient<InmuebleBusquedaPage>();
 
+        builder.Services.AddTransient<NewUserViewModel>();
+        builder.Services.AddTransient<NewUserPage>();
+
+        builder.Services.AddSingleton<UserService>();
+
 
         var dbContext = new ShopDbContext();
 		dbContext.Database.EnsureCreated();
@@ -91,6 +96,9 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 
         Routing.RegisterRoute(nameof(InmuebleBusquedaPage), typeof(InmuebleBusquedaPage));
+
+        Routing.RegisterRoute(nameof(NewUserPage), typeof(NewUserPage));
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

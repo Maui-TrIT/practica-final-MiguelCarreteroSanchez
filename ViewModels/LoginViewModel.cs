@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShopApp.Services;
+using ShopApp.Views;
 
 namespace ShopApp.ViewModels;
 
@@ -17,11 +18,14 @@ public partial class LoginViewModel : ViewModelGlobal
 
     private readonly SecurityService _securityService;
 
-    public LoginViewModel(IConnectivity connectivity, SecurityService securityService)
+    private readonly INavegacionService _navegacionService;
+
+    public LoginViewModel(IConnectivity connectivity, SecurityService securityService, INavegacionService navegacionService)
     {
         _connectivity = connectivity;
         _securityService = securityService;
         _connectivity.ConnectivityChanged += _connectivity_ConnectivityChanged;
+        _navegacionService = navegacionService;
     }
 
     [RelayCommand(CanExecute = nameof(StatusConnection))]
@@ -50,4 +54,11 @@ public partial class LoginViewModel : ViewModelGlobal
         return _connectivity.NetworkAccess == NetworkAccess.Internet ? true : false;
     }
 
+
+    [RelayCommand]
+    async Task TapNewUser()
+    {
+        var uri = $"{nameof(NewUserPage)}";
+        await _navegacionService.GoToAsync(uri);
+    }
 }
